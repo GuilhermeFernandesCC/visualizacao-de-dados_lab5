@@ -1,0 +1,125 @@
+<!--
+	THIS EXAMPLE WAS DOWNLOADED FROM https://echarts.apache.org/examples/en/editor.html?c=bar-negative2&code=MYewdgzgLgBANgQwEYFM4CUCWBzAFrAXhgG8AoGGABxAkyk3AC4YByAJx3xdIF8BuUiEr1wMImQr0ocFMwkUYUFAA8ozFgBFMAMxRsUYAOcIYAExQwAbiDgBXALYXzMYLluWEEGCnsx9iQwBjkBgEEIQwcLAlDhA2FgAacgVqWhEwRhZgAxjuCh4kyRAbeko5ZMkObGw9dQRlTAhEiphtOPsEKBjmbVswYHSYAApKBDYEewgAShIWig82M06TIlHxyYBtAAYAXQEFBX0oWzYwGAADAEFI5gAeJAA-ABJiU2WAOjAJlB5bgHpHvc2A8AGpjTAIIIgO6PF5DN5QBDvDx2FAAKgAjFstlN3lAQAAxTDKFCmIYYqY8GAAUiBD3OLQKLXqjQACiBMNFarMDpIAJ6UWSsCC4BCmEAAdzyCh4ySZFGwHFM5QO-LKMAAHFtCgokCAuiB7MwAMxbOU65SXBoQFUKKACoVZToobBxPnNA6pOgMDKsPUG-wehQQShwOgAGU5QvkBzDYBQAGV7TJbbzFA71G8RaTpQdZXmdRQEQhmBsAExbDEAFgSFYxAFZa5WAGxNjEAdjbGrbAE4mxX-xj-2X-8adubknyrY1U-nBeoUbYUEGKCyIJH43IYCLJT0EHAIBZ5Qo1wAVTDAADWW53Er3B6Phe3oYjUZvuF3rX3h5gx9X1vDZA0FnCg2jYDoum5Xp-nSIZFxQGYY15I4TjOJMODAbA4P3JdMWxKYAGoACIaSIvgKD-P4YEjew6BMEwyxcTxPDMFBgEwDpGjmX9GQnChDw4FAbRgDYWiQigvkcdQtF0fR-gsakVztDM_TGJSKL-aAECvdRT31fd1KWRFSy2d4qyretsSs6zrNbGAAFpTK2cyyyrDEyzLesey2Mt3PrZsawc0yy2NdsMWNKt2zLHt2wC5t23rCyEiC94yw1U1LI1SKLNisswuSst3mbDFmy2BLm0sjEMQ1CtjWSxz3gijUey1Pz6xCytPMbGBTOqhKNXbDVm28yzK2xIcUoi6L22NKrsR7ZtjRizsYAxMyGx7esNQ1Datp24r6tMryBoCqr4uGirhp2J8KDoHwkz5FNxIUUA4DiHo-gGH1hjWCZph5NNDhQY5TioMY_uRHCLAeIgthgAB-VhFRQAwWHUfRTFzXl82x3iKGulpiwALWKI0RLE7jb2YKA2CXG6_BQfd6CkxRaZQemtLYNQevpgxlVW7FGSfZ77XnVhOVocxDP0JmOKFGm6cpxEueYbVuL55gsTNPNkgJ_ggA
+	⚠ Please be aware that this chart is not an official demo of Apache ECharts but is made by user-generated code.
+-->
+<!DOCTYPE html>
+<html lang="en" style="height: 100%">
+<head>
+  <meta charset="utf-8">
+</head>
+<body style="height: 100%; margin: 0">
+  <div id="container" style="height: 100%"></div>
+
+  
+  <script type="text/javascript" src="https://fastly.jsdelivr.net/npm/echarts@5/dist/echarts.min.js"></script>
+  
+  <!-- Uncomment this line if you want to dataTool extension
+  <script type="text/javascript" src="https://fastly.jsdelivr.net/npm/echarts@5/dist/extension/dataTool.min.js"></script>
+  -->
+  <!-- Uncomment this line if you want to use gl extension
+  <script type="text/javascript" src="https://echarts.apache.org/en/js/vendors/echarts-gl/dist/echarts-gl.min.js"></script>
+  -->
+  <!-- Uncomment this line if you want to echarts-stat extension
+  <script type="text/javascript" src="https://echarts.apache.org/en/js/vendors/echarts-stat/dist/ecStat.min.js"></script>
+  -->
+  <!-- Uncomment this line if you want to echarts-graph-modularity extension
+  <script type="text/javascript" src="https://echarts.apache.org/en/js/vendors/echarts-graph-modularity/dist/echarts-graph-modularity.min.js"></script>
+  -->
+  <!-- Uncomment this line if you want to use map
+  <script type="text/javascript" src="https://fastly.jsdelivr.net/npm/echarts@4.9.0/map/js/world.js"></script>
+  -->
+  <!-- Uncomment these two lines if you want to use bmap extension
+  <script type="text/javascript" src="https://api.map.baidu.com/api?v=3.0&ak=YOUR_API_KEY"></script>
+  <script type="text/javascript" src="https://fastly.jsdelivr.net/npm/echarts@5/dist/extension/bmap.min.js"></script>
+  -->
+
+  <script type="text/javascript">
+    var dom = document.getElementById('container');
+    var myChart = echarts.init(dom, null, {
+      renderer: 'canvas',
+      useDirtyRect: false
+    });
+    var app = {};
+    
+    var option;
+
+    const labelRight = {
+  position: 'right'
+};
+option = {
+  title: {
+    text: 'Diferença de volume de chuvas em relação ao ano anterior',
+    position:'center'
+  },
+  tooltip: {
+    trigger: 'axis',
+    formatter: function (params) {
+      var data = params[0];
+      return `Ano: <b>${data.name}</b><br>Variação: <b>${(data.value*100).toFixed(1)} %<br>`
+    },
+    axisPointer: {
+      type: 'shadow'
+    }
+  },
+  grid: {
+    top: 80,
+    bottom: 30
+  },
+  xAxis: {
+    type: 'category',
+    position: 'bottom',
+    splitLine: {
+      lineStyle: {
+        type: 'dashed'
+      }
+    },
+    data: [2014,2015,2016,2017,2018,2019,2020,2021,2022,2023]
+  },
+  yAxis: {
+    type: 'value',
+    axisLine: { show: false },
+    axisTick: { show: false },
+    splitLine: { show: false },
+    axisLabel: {
+      formatter: function(value) {
+        return String(value*100)+" %";  // Limita a 2 casas decimais
+      }
+    }
+  },
+  series: [
+    {
+      name: 'Diference %',
+      type: 'bar',
+      //stack: 'Total',
+      data: [0.44500000000000006, -0.04424122590212564, -0.23713472976467545, -0.2830508474576271, 2.616075650118203, -0.34898012552301255, 0.18758786905001001, -0.3429731100963977, 1.4159588159588161, -0.5987641167696569],
+      itemStyle:{
+        color: function (params) {
+          return params.value >= 0 ? 'green': 'red'
+        }
+      }
+    }
+  ],
+    dataZoom: [
+    {
+      show: true,
+      realtime: true,
+      start: 0,
+      end: 100
+    },
+    {
+      type: 'inside',
+      realtime: true,
+      start: 0,
+      end: 100
+    }
+  ],
+};
+
+    if (option && typeof option === 'object') {
+      myChart.setOption(option);
+    }
+
+    window.addEventListener('resize', myChart.resize);
+  </script>
+</body>
+</html>
